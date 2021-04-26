@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router , Route , Switch } from 'react-router-dom';
 import * as ROUTES from './constants/routes'
+import UserContext from './context/user';
 import useAuthListener from './hooks/useAuthListener';
 
 const Login = lazy(()=> import('./pages/login') )
@@ -13,7 +14,9 @@ const NotFound = lazy(()=> import('./pages/NotFound') )
 function App() {
 
     const {User} = useAuthListener()
+
   return (
+    <UserContext.Provider  value={{User}} >
    <Router>
       <Suspense fallback = {<p>Loading</p>} >
           <Switch>
@@ -24,6 +27,7 @@ function App() {
         </Switch>
       </Suspense>
    </Router>
+   </UserContext.Provider>
   );
 }
 
