@@ -8,7 +8,7 @@ export default function Header() {
     const { User } = useContext(UserContext);
     const { firebase } = useContext(FirebaseContext);
 
-        console.log(User.displayName)
+       
 
 
     return (
